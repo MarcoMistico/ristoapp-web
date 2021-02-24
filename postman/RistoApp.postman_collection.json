@@ -114,7 +114,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbm9ueW1vdXNVc2VyIiwiaWF0IjoxNjE0MTE5ODY0LCJleHAiOjE2MTQyMDYyNjR9.MzLu7_egd7qgpwiFfIp-Z-DvpFrUnbdUU_0rA_uqKVtohAuxVXi7iedy0cxAyyHuN7HIYBcBSjcfTFcWUmt7MA",
+							"value": "",
 							"type": "string"
 						}
 					]
@@ -122,15 +122,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/api/{{version}}/test/getUsers",
+					"raw": "{{host}}/api/{{version}}/guest/test",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"api",
 						"{{version}}",
-						"test",
-						"getUsers"
+						"guest",
+						"test"
 					]
 				}
 			},
