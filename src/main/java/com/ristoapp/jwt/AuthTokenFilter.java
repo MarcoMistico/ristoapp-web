@@ -48,7 +48,8 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 					SecurityContextHolder.getContext().setAuthentication(authentication);
 				}
 			}
-			else {
+			else if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
+				
 				AnonymousAuthenticationToken authguest = new AnonymousAuthenticationToken("anonymous","anonymousUser", AuthorityUtils.createAuthorityList("ROLE_GUEST"));
 	            authguest.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             	SecurityContextHolder.getContext().setAuthentication(authguest);
