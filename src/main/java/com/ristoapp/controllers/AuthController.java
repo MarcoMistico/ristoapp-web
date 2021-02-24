@@ -34,9 +34,9 @@ import com.ristoapp.response.JwtResponse;
 import com.ristoapp.response.MessageResponse;
 import com.ristoapp.security.services.UserDetailsImpl;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "${app.domain}", maxAge = 3600)
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/api/${app.version}/auth")
 public class AuthController {
 	@Autowired
 	AuthenticationManager authenticationManager;
