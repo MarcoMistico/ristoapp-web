@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import com.ristoapp.jwt.AuthEntryPointJwt;
 import com.ristoapp.jwt.AuthTokenFilter;
@@ -24,7 +25,7 @@ import com.ristoapp.security.services.UserDetailsServiceImpl;
 		// securedEnabled = true,
 		// jsr250Enabled = true,
 		prePostEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	UserDetailsServiceImpl userDetailsService;
 
@@ -51,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable()

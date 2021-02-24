@@ -34,7 +34,7 @@ import com.ristoapp.response.JwtResponse;
 import com.ristoapp.response.MessageResponse;
 import com.ristoapp.security.services.UserDetailsImpl;
 
-@CrossOrigin(origins = "${app.domain}", maxAge = 3600)
+@CrossOrigin(origins = {"${app.allowedOrigins}.split(',')"}, maxAge = 3600)
 @RestController
 @RequestMapping("/api/${app.version}/auth")
 public class AuthController {

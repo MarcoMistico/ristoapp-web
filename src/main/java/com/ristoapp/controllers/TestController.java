@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ristoapp.repository.UserRepository;
 import com.ristoapp.response.MessageResponse;
 
-@CrossOrigin(origins = "${app.domain}", maxAge = 3600)
+//@CrossOrigin(origins = "${app.domain}", maxAge = 3600)
 @RestController
 @RequestMapping("/api/${app.version}")
 public class TestController {
