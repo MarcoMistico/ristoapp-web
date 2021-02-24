@@ -21,10 +21,13 @@ public class JwtUtils {
 
 	@Value("${app.jwtExpirationMs}")
 	private int jwtExpirationMs;
+	
+	@Value("${app.jwtAnonymousExpirationMs}")
+	private int jwtAnonymousExpirationMs;
 
-	public String generateJwtToken(Authentication authentication) {
-
-		try {
+	public String generateJwtToken(Authentication authentication, boolean isAnonymous) {
+		
+		if (!isAnonymous){
 			UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 			return Jwts.builder()
 					.setSubject((userPrincipal.getUsername()))
@@ -32,12 +35,13 @@ public class JwtUtils {
 					.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
 					.signWith(SignatureAlgorithm.HS512, jwtSecret)
 					.compact();
-		} catch (ClassCastException e){
+		}
+		else {
 			String userPrincipal = (String) authentication.getPrincipal();
 			return Jwts.builder()
 					.setSubject((userPrincipal))
 					.setIssuedAt(new Date())
-					.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+					.setExpiration(new Date((new Date()).getTime() + jwtAnonymousExpirationMs))
 					.signWith(SignatureAlgorithm.HS512, jwtSecret)
 					.compact();
 		}
