@@ -1,0 +1,1 @@
+heroku deploy:jar target/ristoapp-0.0.1-SNAPSHOT.jar --app ristoapp-web
