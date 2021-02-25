@@ -2,7 +2,7 @@ package com.ristoapp.models;
 
 import javax.persistence.*;
 
-import com.ristoapp.enums.ERole;
+import com.ristoapp.enums.RoleEnum;
 
 @Entity
 @Table(name = "roles")
@@ -13,13 +13,13 @@ public class Role {
 
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20)
-	private ERole name;
+	private RoleEnum name;
 
 	public Role() {
 
 	}
 
-	public Role(ERole name) {
+	public Role(RoleEnum name) {
 		this.name = name;
 	}
 
@@ -32,11 +32,11 @@ public class Role {
 	}
 
 
-	public ERole getName() {
+	public RoleEnum getName() {
 		return name;
 	}
 
-	public void setName(ERole name) {
+	public void setName(RoleEnum name) {
 		this.name = name;
 	}
 }

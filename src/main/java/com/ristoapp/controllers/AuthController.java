@@ -15,14 +15,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ristoapp.enums.ERole;
+import com.ristoapp.enums.RoleEnum;
 import com.ristoapp.jwt.JwtUtils;
 import com.ristoapp.models.Role;
 import com.ristoapp.models.User;
@@ -34,7 +33,6 @@ import com.ristoapp.response.JwtResponse;
 import com.ristoapp.response.MessageResponse;
 import com.ristoapp.security.services.UserDetailsImpl;
 
-@CrossOrigin(origins = {"${app.allowedOrigins}.split(',')"}, maxAge = 3600)
 @RestController
 @RequestMapping("/api/${app.version}/auth")
 public class AuthController {
@@ -123,26 +121,26 @@ public class AuthController {
 		Set<Role> roles = new HashSet<>();
 
 		if (strRoles == null) {
-			Role guestRole = roleRepository.findByName(ERole.ROLE_GUEST)
+			Role guestRole = roleRepository.findByName(RoleEnum.ROLE_GUEST)
 					.orElseThrow(() -> new RuntimeException(roleError));
 			roles.add(guestRole);
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
 				case 3:
-					Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+					Role adminRole = roleRepository.findByName(RoleEnum.ROLE_ADMIN)
 							.orElseThrow(() -> new RuntimeException(roleError));
 					roles.add(adminRole);
 
 					break;
 				case 2:
-					Role waiterRole = roleRepository.findByName(ERole.ROLE_WAITER)
+					Role waiterRole = roleRepository.findByName(RoleEnum.ROLE_WAITER)
 							.orElseThrow(() -> new RuntimeException(roleError));
 					roles.add(waiterRole);
 
 					break;
 				default:
-					Role guestRole = roleRepository.findByName(ERole.ROLE_GUEST)
+					Role guestRole = roleRepository.findByName(RoleEnum.ROLE_GUEST)
 							.orElseThrow(() -> new RuntimeException(roleError));
 					roles.add(guestRole);
 				}

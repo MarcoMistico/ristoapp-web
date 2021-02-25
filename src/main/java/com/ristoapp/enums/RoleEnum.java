@@ -1,6 +1,6 @@
 package com.ristoapp.enums;
 
-public enum ERole {
+public enum RoleEnum {
 	ROLE_GUEST,
 	ROLE_WAITER,
 	ROLE_ADMIN
