@@ -18,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -34,6 +36,7 @@ public class Product {
 	
 	@ManyToOne
 	@JoinColumn(name="category")
+	@JsonIdentityReference(alwaysAsId = true)
 	private ProductCategory category;
 	
 	@Column(name = "price_amount", precision = 8, scale = 2)
@@ -43,10 +46,12 @@ public class Product {
 	@JoinTable(	name = "product_ingredients", 
 				joinColumns = @JoinColumn(name = "product_id"), 
 				inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+	@JsonIdentityReference(alwaysAsId = true)
 	private List<Ingredient> ingredients;
 	
 	@OneToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name="product_id")
+	@JsonIdentityReference(alwaysAsId = true)
 	private List<Review> reviews;
 	
 	@Column(name = "average_reviews_number")

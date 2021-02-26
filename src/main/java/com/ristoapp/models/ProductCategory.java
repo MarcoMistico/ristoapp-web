@@ -9,10 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.ristoapp.enums.ProductCategoryEnum;
+import com.ristoapp.entityResolver.EntityIdResolver;
 
 @Entity
 @Table(name = "product_categories")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", resolver = EntityIdResolver.class, scope=ProductCategory.class )
 public class ProductCategory {
 
 	@Id
