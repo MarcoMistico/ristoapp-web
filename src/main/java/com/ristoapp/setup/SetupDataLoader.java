@@ -35,7 +35,7 @@ ApplicationListener<ApplicationReadyEvent>{
 		}
 	}
 	
-	private void createOrUpdateproductCategory(int id, ProductCategoryEnum productCategoryEnum) {
+	private void createOrUpdateproductCategory(long id, ProductCategoryEnum productCategoryEnum) {
 		ProductCategory category = productCategoryRepository.findById(id);
         if (category == null) {
         	category = new ProductCategory(productCategoryEnum);

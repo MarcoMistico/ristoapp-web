@@ -19,11 +19,16 @@ public class ProductServiceImpl implements ProductService{
 	ProductRepository repository;
 
 	@Override
-	public ResponseEntity<List<Product>> getProducts() {
+	public ResponseEntity<List<Product>> getProducts(Optional<Long> idCategory) {
 		List<Product> products = new ArrayList<>();
 
 		try {
-			repository.findAll().forEach(products::add);
+			if (idCategory.isPresent()) {
+				repository.findAllByCategory_Id(idCategory.get()).forEach(products::add);
+			}
+			else {
+				repository.findAll().forEach(products::add);
+			}
 
 			if (products.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);

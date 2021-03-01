@@ -178,6 +178,13 @@
 								"{{version}}",
 								"user",
 								"products"
+							],
+							"query": [
+								{
+									"key": "idCategory",
+									"value": "1",
+									"disabled": true
+								}
 							]
 						}
 					},

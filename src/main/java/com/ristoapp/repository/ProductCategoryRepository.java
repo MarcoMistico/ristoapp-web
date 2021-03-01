@@ -7,5 +7,5 @@ import com.ristoapp.models.ProductCategory;
 
 public interface ProductCategoryRepository extends CrudRepository<ProductCategory, Long> {
 
-	ProductCategory findById(int id);
+	ProductCategory findById(long id);
 }
