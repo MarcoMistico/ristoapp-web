@@ -4,10 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.ristoapp.enums.OrderStatusEnum;
 
 @Entity
 @Table(name = "orders")
@@ -25,14 +29,18 @@ public class Order {
 	
 	@Column(name = "amount")
 	private double amount;
+	
+	@Enumerated(EnumType.ORDINAL)
+    private OrderStatusEnum status;
 
 	public Order() {
 	}
 
-	public Order(int tableNumber, Date orderDate, double amount) {
+	public Order(int tableNumber, Date orderDate, double amount, OrderStatusEnum status) {
 		this.tableNumber = tableNumber;
 		this.orderDate = orderDate;
 		this.amount = amount;
+		this.status = status;
 	}
 
 	public Long getId() {
@@ -66,6 +74,13 @@ public class Order {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	
+
+	public OrderStatusEnum getStatus() {
+		return status;
+	}
+
+	public void setStatus(OrderStatusEnum status) {
+		this.status = status;
+	}
 	
 }
