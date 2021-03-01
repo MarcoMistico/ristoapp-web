@@ -18,7 +18,7 @@ public class Ingredient {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private long id;
 	
 	@Column(name = "name")
 	private String name;
@@ -34,11 +34,11 @@ public class Ingredient {
 		this.editable = editable;
 	}
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

@@ -54,7 +54,7 @@ public class ProductServiceImpl implements ProductService{
 		
 		try {
 			Product _product = new Product(product.getName(), product.getDescription(), product.getCategory(), product.getPriceAmount(),
-					product.getIngredients(), product.getReviews(), getAverageReviewsNumber(product), product.getPicByte());
+					product.getIngredients(), product.getReviews(), product.getPicByte());
 			
 			repository.save(_product);
 			return new ResponseEntity<>(_product.getId(), HttpStatus.OK);
@@ -77,7 +77,6 @@ public class ProductServiceImpl implements ProductService{
 			_theProduct.setPriceAmount(product.getPriceAmount());
 			_theProduct.setIngredients(product.getIngredients());
 			_theProduct.setReviews(product.getReviews());
-			_theProduct.setAverageReviewsNumber(getAverageReviewsNumber(product));
 			_theProduct.setPicByte(product.getPicByte());
 			
 			repository.save((_theProduct));
@@ -100,23 +99,6 @@ public class ProductServiceImpl implements ProductService{
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-	}
-
-	private double getAverageReviewsNumber(Product product) {
-		double averageReviewsNumber = 0;
-		int totReviews = 0;
-		for (int i = 0; i < product.getReviews().size(); i++) {
-			if (i == product.getReviews().size()-1) {
-				averageReviewsNumber = round(totReviews/i, 2);
-			}
-			totReviews += product.getReviews().get(i).getValue();
-		}
-		return averageReviewsNumber;
-	}
-	
-	private double round (double value, int precision) {
-	    int scale = (int) Math.pow(10, precision);
-	    return (double) Math.round(value * scale) / scale;
 	}
 
 }

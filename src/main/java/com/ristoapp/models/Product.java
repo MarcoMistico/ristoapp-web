@@ -54,8 +54,8 @@ public class Product {
 	@JsonIdentityReference(alwaysAsId = true)
 	private List<Review> reviews;
 	
-	@Column(name = "average_reviews_number")
-	private double averageReviewsNumber;
+//	@Column(name = "average_reviews_number")
+//	private double averageReviewsNumber;
 	
 	@Column(name = "picByte", length = 1000)
 	private byte[] picByte;
@@ -65,14 +65,14 @@ public class Product {
 	}
 	
 	public Product(String name, String description, ProductCategory category, BigDecimal priceAmount, List<Ingredient> ingredients,
-			List<Review> reviews, double averageReviewsNumber, byte[] picByte) {
+			List<Review> reviews, byte[] picByte) {
 		this.name = name;
 		this.description = description;
 		this.category = category;
 		this.priceAmount = priceAmount;
 		this.ingredients = ingredients;
 		this.reviews = reviews;
-		this.averageReviewsNumber = averageReviewsNumber;
+//		this.averageReviewsNumber = averageReviewsNumber;
 		this.picByte = picByte;
 	}
 	
@@ -132,13 +132,13 @@ public class Product {
 		this.reviews = reviews;
 	}
 
-	public double getAverageReviewsNumber() {
-		return averageReviewsNumber;
-	}
-
-	public void setAverageReviewsNumber(double averageReviewsNumber) {
-		this.averageReviewsNumber = averageReviewsNumber;
-	}
+//	public double getAverageReviewsNumber() {
+//		return averageReviewsNumber;
+//	}
+//
+//	public void setAverageReviewsNumber(double averageReviewsNumber) {
+//		this.averageReviewsNumber = averageReviewsNumber;
+//	}
 
 	public byte[] getPicByte() {
 		return picByte;
@@ -152,6 +152,6 @@ public class Product {
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", category=" + category
 				+ ", priceAmount=" + priceAmount + ", ingredients=" + ingredients + ", reviews=" + reviews
-				+ ", averageReviewsNumber=" + averageReviewsNumber + ", picByte=" + Arrays.toString(picByte) + "]";
+				+ ", picByte=" + Arrays.toString(picByte) + "]";
 	}
 }
